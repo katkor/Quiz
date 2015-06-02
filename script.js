@@ -19,3 +19,5 @@ choices: ["owca", "lama", "stado"],
 correctAnswer:0}
 ];
 //ale jest fajnie, tylko co dalej
+alert("Yay, conflict!");
+
