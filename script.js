@@ -18,6 +18,10 @@ correctAnswer:0},
 choices: ["owca", "lama", "stado"],
 correctAnswer:0}
 ];
-//ale jest fajnie, tylko co dalej
-alert("Yay, conflict!");
 
+$(document).ready(function() {
+	$('.questions').hide();
+});
+
+
+$('h2').text(allQuestions[0].question);
