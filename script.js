@@ -18,3 +18,4 @@ correctAnswer:0},
 choices: ["owca", "lama", "stado"],
 correctAnswer:0}
 ];
+alert("");
