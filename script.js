@@ -23,5 +23,10 @@ $(document).ready(function() {
 	$('.questions').hide();
 });
 
+$('#start').click(function() {
+	$(this).hide();
+	$('.questions').show();
+});
+
 
 $('h2').text(allQuestions[0].question);
