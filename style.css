@@ -1,0 +1,11 @@
+#start {
+	position: relative;
+	top: 300px;
+	width: 200px;
+	height: 50px;
+}
+
+.questions {
+	position: relative;
+	top: 200px;
+}
