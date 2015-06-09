@@ -36,20 +36,31 @@ var answers = document.getElementsByClassName('answer');
 
 for (var i=0; i<allQuestions[0].choices.length; i++) {
 	$(answers[i]).val(allQuestions[0].choices[i]);
-	$(answers[i]).after(allQuestions[0].choices[i]);
-	
+	//$(answers[i]).after(allQuestions[0].choices[i]);
+    //$(answers[i]).text(allQuestions[0].choices[i]);
+	//$('input').append(allQuestions[0].choices[i]);
+    //$(":radio[name=pyt1]").append(allQuestions[0].choices[i]);
 }
+$('label[for=ans1]').text(allQuestions[counter].choices[0]);
+$('label[for=ans2]').text(allQuestions[counter].choices[1]);
+$('label[for=ans3]').text(allQuestions[counter].choices[2]);
+    //jak robię to w pętli jedną linijką zamiast trzech to wszędzie wpisana jest trzecia odpowiedz
+
 
 $('form' ).submit(function( event ) {
   event.preventDefault();
   if (counter < allQuestions.length-1) {
     counter++;
     $('h2').text(allQuestions[counter].question);
+    //nic sie nie zmienia, dlaczego???
+    $('label[for=ans1]').text(allQuestions[counter].choices[0]);
+    $('label[for=ans2]').text(allQuestions[counter].choices[1]);
+    $('label[for=ans3]').text(allQuestions[counter].choices[2]);
     }
   else {
     $(document).ready(function() {
       $('.questions').hide();
       });
-    $('body').append("Koniec quizu.")
+    $('#end').append("Koniec quizu.")
   }
 });
