@@ -29,7 +29,8 @@ $('#start').click(function() {
 });
 
 
-$('h2').text(allQuestions[0].question);
+var counter = 0;
+$('h2').text(allQuestions[counter].question);
 
 var answers = document.getElementsByClassName('answer');
 
@@ -38,3 +39,10 @@ for (var i=0; i<allQuestions[0].choices.length; i++) {
 	$(answers[i]).after(allQuestions[0].choices[i]);
 	
 }
+
+$('form' ).submit(function( event ) {
+  event.preventDefault();
+  counter++;
+  $('h2').text(allQuestions[counter].question);
+});
+
