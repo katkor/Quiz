@@ -42,7 +42,14 @@ for (var i=0; i<allQuestions[0].choices.length; i++) {
 
 $('form' ).submit(function( event ) {
   event.preventDefault();
-  counter++;
-  $('h2').text(allQuestions[counter].question);
+  if (counter < allQuestions.length-1) {
+    counter++;
+    $('h2').text(allQuestions[counter].question);
+    }
+  else {
+    $(document).ready(function() {
+      $('.questions').hide();
+      });
+    $('body').append("Koniec quizu.")
+  }
 });
-
