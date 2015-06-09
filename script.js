@@ -28,9 +28,16 @@ $('#start').click(function() {
 	$('.questions').show();
 });
 
-
-$('h2').text(allQuestions[0].question);
-for (var i=0; i<allQuestions[0].choices.length; i++) {
+var counter = 0;
+$('h2').text(allQuestions[counter].question);
+for (var i=0; i<allQuestions[counter].choices.length; i++) {
 	$('input[name="pyt1"]').val(allQuestions[0].choices[i]);
 	$('input[name="pyt1"]').after(allQuestions[0].choices[i]);
 }
+
+$('form' ).submit(function( event ) {
+  alert( 'Question that was called' + counter );
+  event.preventDefault();
+  counter++
+  $('h2').text(allQuestions[counter].question);
+});
