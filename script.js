@@ -30,7 +30,11 @@ $('#start').click(function() {
 
 
 $('h2').text(allQuestions[0].question);
+
+var answers = document.getElementsByClassName('answer');
+
 for (var i=0; i<allQuestions[0].choices.length; i++) {
-	$('input[name="pyt1"]').val(allQuestions[0].choices[i]);
-	$('input[name="pyt1"]').after(allQuestions[0].choices[i]);
+	$(answers[i]).val(allQuestions[0].choices[i]);
+	$(answers[i]).after(allQuestions[0].choices[i]);
+	
 }
