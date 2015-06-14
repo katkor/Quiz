@@ -20,12 +20,12 @@ correctAnswer:0}
 ];
 
 $(document).ready(function() {
-	$('.questions').hide();
+  $('.questions').hide();
 });
 
 $('#start').click(function() {
-	$(this).hide();
-	$('.questions').show();
+  $(this).hide();
+  $('.questions').show();
 });
 
 
@@ -34,26 +34,58 @@ $('h2').text(allQuestions[counter].question);
 
 var answers = document.getElementsByClassName('answer');
 
-for (var i=0; i<allQuestions[counter].choices.length; i++) {
-	$(answers[i]).val(allQuestions[counter].choices[i]);
-	$(answers[i]).text(allQuestions[counter].choices[i]);
-	
-}
+//for (var i=0; i<allQuestions[0].choices.length; i++) {
+//  $(answers[i]).val(allQuestions[0].choices[i]);
+  //$(answers[i]).after(allQuestions[0].choices[i]);
+    //$(answers[i]).text(allQuestions[0].choices[i]);
+  //$('input').append(allQuestions[0].choices[i]);
+    //$(":radio[name=pyt1]").append(allQuestions[0].choices[i]);
+//}
+$('label[for=ans1]').text(allQuestions[counter].choices[0]);
+$('label[for=ans2]').text(allQuestions[counter].choices[1]);
+$('label[for=ans3]').text(allQuestions[counter].choices[2]);
+    //jak robię to w pętli jedną linijką zamiast trzech to wszędzie wpisana jest trzecia odpowiedz
+
 
 $('form' ).submit(function( event ) {
   event.preventDefault();
-  if (counter < allQuestions.length-1) {
+    if (counter < allQuestions.length-1) {
     counter++;
     $('h2').text(allQuestions[counter].question);
-    for (var i=0; i<allQuestions[counter].choices.length; i++) {
-	$(answers[i]).val(allQuestions[counter].choices[i]);
-	$(answers[i]).text(allQuestions[counter].choices[i]);
+    //nic sie nie zmienia, dlaczego???
+    $('label[for=ans1]').text(allQuestions[counter].choices[0]);
+    $('label[for=ans2]').text(allQuestions[counter].choices[1]);
+    $('label[for=ans3]').text(allQuestions[counter].choices[2]);
     }
-}
   else {
     $(document).ready(function() {
       $('.questions').hide();
       });
-    $('#end').append("Koniec quizu.");
+      var result = compare();
+      $('#end').append("Koniec quizu. Liczba uzyskanych punktów: " + result);
+      
   }
 });
+
+usersChoices = [];
+//get chosen value
+$(document).ready(function(){
+        $("input[type='submit']").click(function(){
+            var radioValue = $("input[name='pyt1']:checked").val();
+            //radioValue is a string!
+            usersChoices.push(radioValue);
+        });
+        
+    });
+
+
+var compare = function () {
+    var points= 0;
+    //compare choices
+    for(var i =0; i <usersChoices.length; i++){
+        if (usersChoices[i] == allQuestions[i].correctAnswer){
+            points++;
+        }
+    }
+    return points;
+}
