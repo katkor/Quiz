@@ -34,9 +34,9 @@ $('h2').text(allQuestions[counter].question);
 
 var answers = document.getElementsByClassName('answer');
 
-for (var i=0; i<allQuestions[0].choices.length; i++) {
-	$(answers[i]).val(allQuestions[0].choices[i]);
-	$(answers[i]).after(allQuestions[0].choices[i]);
+for (var i=0; i<allQuestions[counter].choices.length; i++) {
+	$(answers[i]).val(allQuestions[counter].choices[i]);
+	$(answers[i]).text(allQuestions[counter].choices[i]);
 	
 }
 
@@ -45,11 +45,15 @@ $('form' ).submit(function( event ) {
   if (counter < allQuestions.length-1) {
     counter++;
     $('h2').text(allQuestions[counter].question);
+    for (var i=0; i<allQuestions[counter].choices.length; i++) {
+	$(answers[i]).val(allQuestions[counter].choices[i]);
+	$(answers[i]).text(allQuestions[counter].choices[i]);
     }
+}
   else {
     $(document).ready(function() {
       $('.questions').hide();
       });
-    $('body').append("Koniec quizu.")
+    $('#end').append("Koniec quizu.");
   }
 });
