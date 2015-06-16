@@ -1,4 +1,3 @@
-//all questions in array
 var allQuestions = [
 {question: "W którym wieku panowała caryca Katarzyna II Wielka?",
 choices: ["XVI", "XVII", "XVIII"],
@@ -20,7 +19,6 @@ choices: ["owca", "lama", "stado"],
 correctAnswer:0}
 ];
 
-//hide questions at the beginning
 $(document).ready(function() {
   $('.questions').hide();
 });
@@ -31,56 +29,42 @@ $('#start').click(function() {
   $('.questions').show();
 });
 
-//show first question
+
 //counter - no of question
 var counter = 0;
 $('h2').text(allQuestions[counter].question);
-var answers = document.getElementsByClassName('answer');
 
-//for (var i=0; i<allQuestions[0].choices.length; i++) {
-//  $(answers[i]).val(allQuestions[0].choices[i]);
-  //$(answers[i]).after(allQuestions[0].choices[i]);
-    //$(answers[i]).text(allQuestions[0].choices[i]);
-  //$('input').append(allQuestions[0].choices[i]);
-    //$(":radio[name=pyt1]").append(allQuestions[0].choices[i]);
-//}
-//show answers to first question
+//answers to first question
 $('label[for=ans1]').text(allQuestions[counter].choices[0]);
 $('label[for=ans2]').text(allQuestions[counter].choices[1]);
 $('label[for=ans3]').text(allQuestions[counter].choices[2]);
-    //jak robię to w pętli jedną linijką zamiast trzech to wszędzie wpisana jest trzecia odpowiedz
-
 //click next = go to next question
 $('form' ).submit(function( event ) {
   event.preventDefault();
     if (counter < allQuestions.length-1) {
     counter++;
     $('h2').text(allQuestions[counter].question);
-    //nic sie nie zmienia, dlaczego???
     $('label[for=ans1]').text(allQuestions[counter].choices[0]);
     $('label[for=ans2]').text(allQuestions[counter].choices[1]);
     $('label[for=ans3]').text(allQuestions[counter].choices[2]);
     }
-  else {
-    $(document).ready(function() {
-      $('.questions').hide();
+    else {
+      $(document).ready(function() {
+        $('.questions').hide();
       });
       var result = compare();
       $('#end').append("Koniec quizu. Liczba uzyskanych punktów: " + result);
-      
-  }
+    }
 });
 
-
-usersChoices = [];
 //get chosen values
+usersChoices = [];
 $(document).ready(function(){
         $("input[type='submit']").click(function(){
             var radioValue = $("input[name='pyt1']:checked").val();
             //radioValue is a string!
             usersChoices.push(radioValue);
         });
-        
     });
 
 //count points
