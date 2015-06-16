@@ -1,3 +1,4 @@
+//all questions in array
 var allQuestions = [
 {question: "W którym wieku panowała caryca Katarzyna II Wielka?",
 choices: ["XVI", "XVII", "XVIII"],
@@ -19,19 +20,21 @@ choices: ["owca", "lama", "stado"],
 correctAnswer:0}
 ];
 
+//hide questions at the beginning
 $(document).ready(function() {
   $('.questions').hide();
 });
 
+//start quiz = show questions
 $('#start').click(function() {
   $(this).hide();
   $('.questions').show();
 });
 
-
+//show first question
+//counter - no of question
 var counter = 0;
 $('h2').text(allQuestions[counter].question);
-
 var answers = document.getElementsByClassName('answer');
 
 //for (var i=0; i<allQuestions[0].choices.length; i++) {
@@ -41,12 +44,13 @@ var answers = document.getElementsByClassName('answer');
   //$('input').append(allQuestions[0].choices[i]);
     //$(":radio[name=pyt1]").append(allQuestions[0].choices[i]);
 //}
+//show answers to first question
 $('label[for=ans1]').text(allQuestions[counter].choices[0]);
 $('label[for=ans2]').text(allQuestions[counter].choices[1]);
 $('label[for=ans3]').text(allQuestions[counter].choices[2]);
     //jak robię to w pętli jedną linijką zamiast trzech to wszędzie wpisana jest trzecia odpowiedz
 
-
+//click next = go to next question
 $('form' ).submit(function( event ) {
   event.preventDefault();
     if (counter < allQuestions.length-1) {
@@ -67,8 +71,9 @@ $('form' ).submit(function( event ) {
   }
 });
 
+
 usersChoices = [];
-//get chosen value
+//get chosen values
 $(document).ready(function(){
         $("input[type='submit']").click(function(){
             var radioValue = $("input[name='pyt1']:checked").val();
@@ -78,7 +83,7 @@ $(document).ready(function(){
         
     });
 
-
+//count points
 var compare = function () {
     var points= 0;
     //compare choices
