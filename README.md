@@ -2,7 +2,6 @@
 
 - [x] Points counted.
 - [x] NEXT button takes you to next question.
-- [ ] Appropriate comments explaining parts of code.
 - [ ] "Do you want to take the quiz again?"
 
 Tasks from "Improve your quiz" list:
