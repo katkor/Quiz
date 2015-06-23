@@ -22,57 +22,39 @@ correctAnswer:0}
 
 //hide questions at the beginning
 $(document).ready(function() {
+  var usersChoices = [];
+  var questionNumber = 0;
   $('.questions').hide();
-});
 
-//start quiz = show questions
-$('#start').click(function() {
-  $(this).hide();
-  $('.questions').show();
-});
 
-//show first question
-//counter - no of question
-var counter = 0;
-$('h2').text(allQuestions[counter].question);
-var answers = document.getElementsByClassName('answer');
+var displayQuestion = function (questionNumber){
+    $('h2').text(allQuestions[questionNumber].question);
+    for (var i=0; i<allQuestions[questionNumber].choices.length; i++) {
+      var selector = 'label[for=ans'+ (i + 1) + ']';
+      $(selector).text(allQuestions[questionNumber].choices[i]);
+    }
+}
 
-//for (var i=0; i<allQuestions[0].choices.length; i++) {
-//  $(answers[i]).val(allQuestions[0].choices[i]);
-  //$(answers[i]).after(allQuestions[0].choices[i]);
-    //$(answers[i]).text(allQuestions[0].choices[i]);
-  //$('input').append(allQuestions[0].choices[i]);
-    //$(":radio[name=pyt1]").append(allQuestions[0].choices[i]);
-//}
-//show answers to first question
-$('label[for=ans1]').text(allQuestions[counter].choices[0]);
-$('label[for=ans2]').text(allQuestions[counter].choices[1]);
-$('label[for=ans3]').text(allQuestions[counter].choices[2]);
-    //jak robię to w pętli jedną linijką zamiast trzech to wszędzie wpisana jest trzecia odpowiedz
+displayQuestion(questionNumber);
 
 //click next = go to next question
 $('form' ).submit(function( event ) {
   event.preventDefault();
-    if (counter < allQuestions.length-1) {
-    counter++;
-    $('h2').text(allQuestions[counter].question);
-    //nic sie nie zmienia, dlaczego???
-    $('label[for=ans1]').text(allQuestions[counter].choices[0]);
-    $('label[for=ans2]').text(allQuestions[counter].choices[1]);
-    $('label[for=ans3]').text(allQuestions[counter].choices[2]);
+    if (questionNumber < allQuestions.length-1) {
+    questionNumber++;
+    displayQuestion(questionNumber);
     }
   else {
     $(document).ready(function() {
       $('.questions').hide();
       });
-      var result = compare();
-      $('#end').append("Koniec quizu. Liczba uzyskanych punktów: " + result);
+      $('#end').append("Koniec quizu. Liczba uzyskanych punktów: " + getCurrentPoints());
       
   }
 });
 
 
-usersChoices = [];
+
 //get chosen values
 $(document).ready(function(){
         $("input[type='submit']").click(function(){
@@ -84,7 +66,7 @@ $(document).ready(function(){
     });
 
 //count points
-var compare = function () {
+var getCurrentPoints = function () {
     var points= 0;
     //compare choices
     for(var i =0; i <usersChoices.length; i++){
@@ -94,3 +76,10 @@ var compare = function () {
     }
     return points;
 }
+}); //document ready sie konczy
+
+//start quiz = show questions
+$('#start').click(function() {
+  $(this).hide();
+  $('.questions').show();
+});
