@@ -20,55 +20,48 @@ correctAnswer:0}
 ];
 
 $(document).ready(function() {
+  var usersChoices = [];
+  var questionNumber = 0;
   $('.questions').hide();
-});
 
-//start quiz = show questions
-$('#start').click(function() {
+  //start quiz = show questions
+  $('#start').click(function() {
   $(this).hide();
   $('.questions').show();
-});
+  });
 
+ var displayQuestion = function (questionNumber){  
+    $('h2').text(allQuestions[questionNumber].question);
+    for (var i=0; i<allQuestions[questionNumber].choices.length; i++) {
+      var selector = 'label[for=ans'+ (i + 1) + ']';
+      $(selector).text(allQuestions[questionNumber].choices[i]);
+    }
+  }
 
-//counter - no of question
-var counter = 0;
-$('h2').text(allQuestions[counter].question);
+  displayQuestion(questionNumber);
 
-//answers to first question
-$('label[for=ans1]').text(allQuestions[counter].choices[0]);
-$('label[for=ans2]').text(allQuestions[counter].choices[1]);
-$('label[for=ans3]').text(allQuestions[counter].choices[2]);
 //click next = go to next question
 $('form' ).submit(function( event ) {
+  var radioValue = $("input[name='pyt1']:checked").val();
+  //radioValue is a string!
+  usersChoices.push(radioValue);
   event.preventDefault();
-    if (counter < allQuestions.length-1) {
-    counter++;
-    $('h2').text(allQuestions[counter].question);
-    $('label[for=ans1]').text(allQuestions[counter].choices[0]);
-    $('label[for=ans2]').text(allQuestions[counter].choices[1]);
-    $('label[for=ans3]').text(allQuestions[counter].choices[2]);
+    if (questionNumber < allQuestions.length-1) {
+    questionNumber++;
+    displayQuestion(questionNumber);
     }
     else {
       $(document).ready(function() {
         $('.questions').hide();
       });
-      var result = compare();
-      $('#end').append("Koniec quizu. Liczba uzyskanych punktów: " + result);
-    }
+      $('#end').append("Koniec quizu. Liczba uzyskanych punktów: " + getCurrentPoints());
+      
+  }
 });
 
-//get chosen values
-usersChoices = [];
-$(document).ready(function(){
-        $("input[type='submit']").click(function(){
-            var radioValue = $("input[name='pyt1']:checked").val();
-            //radioValue is a string!
-            usersChoices.push(radioValue);
-        });
-    });
 
 //count points
-var compare = function () {
+var getCurrentPoints = function () {
     var points= 0;
     //compare choices
     for(var i =0; i <usersChoices.length; i++){
@@ -78,3 +71,6 @@ var compare = function () {
     }
     return points;
 }
+}); //document ready sie konczy
+
+
