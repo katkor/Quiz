@@ -1,3 +1,11 @@
+body{
+	background-color: #F5F3E1;
+	color: #040059
+}
+
+button {
+	background-color: #D3DFED
+}
 #start {
 	position: relative;
 	top: 300px;
@@ -8,4 +16,9 @@
 .questions {
 	position: relative;
 	top: 200px;
+}
+
+#end {
+	position: relative;
+	top: 300px;
 }
