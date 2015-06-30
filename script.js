@@ -44,7 +44,6 @@ $(document).ready(function() {
 			usersChoices[questionNumber] = radioValue;
 		}
 		else{
-			console.log(usersChoices);
 			$('input:radio[name="pyt1"][value=' + usersChoices[questionNumber+1] + ']').prop('checked',true);
 		}
 		event.preventDefault();
