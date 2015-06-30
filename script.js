@@ -44,7 +44,8 @@ $(document).ready(function() {
 			usersChoices[questionNumber] = radioValue;
 		}
 		else{
-			$('input:radio[name="pyt1"][value=' + usersChoices[questionNumber] + ']').prop('checked',true);
+			console.log(usersChoices);
+			$('input:radio[name="pyt1"][value=' + usersChoices[questionNumber+1] + ']').prop('checked',true);
 		}
 		event.preventDefault();
 		if (questionNumber < allQuestions.length-1) {
