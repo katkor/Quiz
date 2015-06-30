@@ -39,10 +39,13 @@ $(document).ready(function() {
 	displayQuestion(questionNumber);
 	//click next = go to next question
 	$('.next' ).on('click', function( event ) {
-		var radioValue = $("input[name='pyt1']:checked").val();
-		//radioValue is a string!
-		//usersChoices.push(radioValue);
-		usersChoices[questionNumber] = radioValue;
+		if (usersChoices[questionNumber] === undefined ){
+			var radioValue = $("input[name='pyt1']:checked").val();
+			usersChoices[questionNumber] = radioValue;
+		}
+		else{
+			$('input:radio[name="pyt1"][value=' + usersChoices[questionNumber] + ']').prop('checked',true);
+		}
 		event.preventDefault();
 		if (questionNumber < allQuestions.length-1) {
 			questionNumber++;
@@ -56,7 +59,7 @@ $(document).ready(function() {
 
 $('.back' ).on('click', function( event ) {
 		event.preventDefault();
-		if (questionNumber < allQuestions.length-1 && questionNumber > 0) {
+		if (questionNumber < allQuestions.length && questionNumber > 0) {
 			questionNumber--;
 			displayQuestion(questionNumber);
 			$('input:radio[name="pyt1"][value=' + usersChoices[questionNumber] + ']').prop('checked',true);
