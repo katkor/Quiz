@@ -38,7 +38,7 @@ $(document).ready(function() {
 	//display first question
 	displayQuestion(questionNumber);
 	//click next = go to next question
-	$('form' ).submit(function( event ) {
+	$('.next' ).on('click', function( event ) {
 		var radioValue = $("input[name='pyt1']:checked").val();
 		//radioValue is a string!
 		usersChoices.push(radioValue);
@@ -52,6 +52,16 @@ $(document).ready(function() {
 			$('#end').append("Koniec quizu. Liczba uzyskanych punktów: " + getCurrentPoints());
 		}
 	});
+
+$('.back' ).on('click', function( event ) {
+		event.preventDefault();
+		if (questionNumber < allQuestions.length-1 && questionNumber > 0) {
+			questionNumber--;
+			displayQuestion(questionNumber);
+		}
+	});
+
+
 	//functions
 	var getCurrentPoints = function () {
 		var points= 0;
