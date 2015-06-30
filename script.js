@@ -41,7 +41,8 @@ $(document).ready(function() {
 	$('.next' ).on('click', function( event ) {
 		var radioValue = $("input[name='pyt1']:checked").val();
 		//radioValue is a string!
-		usersChoices.push(radioValue);
+		//usersChoices.push(radioValue);
+		usersChoices[questionNumber] = radioValue;
 		event.preventDefault();
 		if (questionNumber < allQuestions.length-1) {
 			questionNumber++;
@@ -58,15 +59,17 @@ $('.back' ).on('click', function( event ) {
 		if (questionNumber < allQuestions.length-1 && questionNumber > 0) {
 			questionNumber--;
 			displayQuestion(questionNumber);
+			$('input:radio[name="pyt1"][value=' + usersChoices[questionNumber] + ']').prop('checked',true);
 		}
 	});
+
 
 
 	//functions
 	var getCurrentPoints = function () {
 		var points= 0;
 		//compare choices
-		for(var i =0; i <usersChoices.length; i++){
+		for(var i = 0; i <usersChoices.length; i++){
 			if (usersChoices[i] == allQuestions[i].correctAnswer){
 				points++;
 				}
