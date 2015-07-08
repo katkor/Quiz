@@ -23,8 +23,10 @@ $(document).ready(function() {
 	var usersChoices = [];
 	var questionNumber = 0;
 	$('.questions').hide();
+	$('.well').hide();
 	//start quiz = show questions
 	$('#start').click(function() {
+		$('.jumbotron').hide();
 		$(this).hide();
 		$('.questions').show();
 	});
@@ -53,11 +55,12 @@ $(document).ready(function() {
 		}
 		else { //deleted the document ready in document ready
 			$('.questions').hide();
-			$('#end').append("Koniec quizu. Liczba uzyskanych punktów: " + getCurrentPoints());
+			$('.well').show();
+			$('#end').append("<h3>Koniec quizu. Liczba uzyskanych punktów: </h3>" + getCurrentPoints());
 		}
 	});
 
-$('.back' ).on('click', function( event ) {
+	$('.back' ).on('click', function( event ) {
 		event.preventDefault();
 		if (questionNumber < allQuestions.length && questionNumber > 0) {
 			questionNumber--;
